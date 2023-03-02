@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="training.css">
+  <style>
+  </style>
+</head>
+<body>
+  <!-- <aside id="move-btn">
+    <h1>move!</h1>
+  </aside>
+  <div id="root">
+    <main>
+      <section id="left-sect">
+        <ul>
+          <li>items-1</li>
+          <li>items-2</li>
+          <li>items-3</li>
+          <li>items-4</li>
+          <li>items-5</li>
+        </ul>
+      </section>
+      <section id="right-sect">
+        <ul></ul>
+      </section>
+    </main>
+  </div> -->
+</body>
+<script>
+  let body = document.body
+  console.log(body.children)
+  function createTags(tag,howmany,mother){
+    for(let i = 0;i<howmany;i++){
+      let tagCreate = document.createElement(tag);
+      mother.appendChild(tagCreate)
+    }
+  }
+  function precreateTags(tag,howmany,mother){
+    for(let i = 0;i<howmany;i++){
+      let tagCreate = document.createElement(tag);
+      mother.prepend(tagCreate)
+    }
+  }
+  // 태그생성
+  precreateTags("div",1,body)
+  precreateTags("aside",1,body,)
+  createTags("h1",1,body.children[0])
+  createTags("main",1,body.children[1])
+  createTags("section",2,body.children[1].children[0])
+  createTags("ul",1,body.children[1].children[0].children[0])
+  createTags("li",5,body.children[1].children[0].children[0].children[0])
+  createTags("ul",1,body.children[1].children[0].children[1])
+  // 아이디생성
+  body.children[0].id = "move-btn";
+  body.children[1].id = "root";
+  body.children[1].children[0].children[0].id = "left-sect"
+  body.children[1].children[0].children[1].id = "right-sect"
+
+
+
+
+
+
+
+</script>
+</html>

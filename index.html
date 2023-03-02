@@ -5,8 +5,70 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
 </head>
 <body>
-  
+  <div id="root">
+    <ul id ="menu">
+      <li>items-1</li>
+      <li>items-2</li>
+      <li>items-3</li>
+      <li>items-4</li>
+      <li>items-5</li>
+    </ul>
+  </div>
+  <script>
+    const menu =document.getElementById("menu");
+    const firstli = document.querySelector('#menu > li:nth-child(1)');
+    console.dir(menu.children)
+    console.dir(firstli)
+    let switchValue = true;
+    menu.addEventListener('click', function() {
+      if(switchValue === true) {
+        for(let i = 0; i< menu.children.length; i++) {
+          menu.children[i].style.color = "gray";
+          menu.style.backgroundColor = "black"
+        }
+        switchValue = false;
+      } else {
+        for(let i = 0; i< menu.children.length; i++) {
+          menu.children[i].style.color = "black";
+          menu.style.backgroundColor = "white"
+
+        }
+        switchValue = true;
+      }
+    });
+    // let tictok = true;
+    // for(let i = 0;i<menu.children.length;i++){
+    //   menu.children[i].style.color = "pink";
+    //   menu.children[i].style.fontSize = "50px"
+    // }
+    // //   menu.children[i].addEventListener("click", function(){
+    //     if(tictok){
+    //       menu.children[i].style.color = "gray";
+    //       tictok = false;
+    //     }
+    //     else{
+    //       menu.children[i].style.color = "cadetblue";
+    //       tictok = true;
+    //     }
+    //   })
+    // }
+    // let cnt = 0;
+    // window.addEventListener("keydown", ()=>{
+    //   if(tictok){
+    //       menu.children[cnt].style.color = "gray";
+    //       tictok = false;
+    //   }
+    //   else{
+    //       menu.children[cnt].style.color = "cadetblue";
+    //       tictok = true;
+    //   }
+    //   cnt ++;
+    //   cnt %= 5;
+    // })
+    
+  </script>
 </body>
 </html>
