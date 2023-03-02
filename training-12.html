@@ -5,9 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="training.css">
-  <style>
-  </style>
+
 </head>
 <body>
   <!-- <aside id="move-btn">
@@ -32,7 +30,9 @@
 </body>
 <script>
   let body = document.body
-  console.log(body.children)
+
+   // 태그생성
+
   function createTags(tag,howmany,mother){
     for(let i = 0;i<howmany;i++){
       let tagCreate = document.createElement(tag);
@@ -45,7 +45,7 @@
       mother.prepend(tagCreate)
     }
   }
-  // 태그생성
+ 
   precreateTags("div",1,body)
   precreateTags("aside",1,body,)
   createTags("h1",1,body.children[0])
@@ -54,17 +54,153 @@
   createTags("ul",1,body.children[1].children[0].children[0])
   createTags("li",5,body.children[1].children[0].children[0].children[0])
   createTags("ul",1,body.children[1].children[0].children[1])
+
   // 아이디생성
   body.children[0].id = "move-btn";
   body.children[1].id = "root";
   body.children[1].children[0].children[0].id = "left-sect"
   body.children[1].children[0].children[1].id = "right-sect"
+  // 텍스트 넣기
+  body.children[0].children[0].innerHTML = "move!"
+  let liSet = body.children[1].children[0].children[0].children[0].children;
+  for(let liSeti in liSet){
+    liSet[liSeti].innerHTML = "items-" + liSeti;
+  }
+  
+  // 스타일 넣기
+  let star = document.querySelectorAll("*")
+  for(let starIndex = 0; starIndex<star.length;starIndex++){
+    star[starIndex].style.margin = "0px";
+    star[starIndex].style.padding = "0px";
+    star[starIndex].style.boxSizing = "border-box";
+    
+  }
+
+  body.style.overflowX = "hidden";
+
+  // body.children[0].style.width = "200px";
+  // body.children[0].style.height = "200px";
+  moveStyle={
+    backgroundColor : "white",
+    borderRadius : "50%",
+    position : "fixed",
+    bottom : "10px",
+    left : "50vw",
+    transform : "translate(-50%, 0)"    
+  }
+  for(let moveIndex in moveStyle){
+    body.children[0].style[moveIndex] = moveStyle[moveIndex];
+  }
 
 
+  // body.children[0].style.backgroundColor = "white";
+  // body.children[0].style.borderRadius = "50%";
+  // body.children[0].style.position = "fixed";
+  // body.children[0].style.bottom = "10px";
+  // body.children[0].style.left = "50vw";
+  // body.children[0].style.transform = "translate(-50%, 0)";
+  // body.children[0].style.display = "flex";
+  // body.children[0].style.justifyContent = "center";
+  // body.children[0].style.alignItems = "center";
 
+  // body.children[1].style.width = "100vw";
+  // body.children[1].style.height = "100vh";
+  body.children[1].style.backgroundColor = "cadetblue";
+  // body.children[1].style.display = "flex";
+  // body.children[1].style.justifyContent = "center";
+  // body.children[1].style.alignItems = "center";
 
+  // main찾기
+  let main = document.querySelector("#root > main")
+  // main.style.display = "flex";
+  // main.style.justifyContent = "center";
+  // main.style.alignItems = "center";
+  
+  
+  let ul = document.getElementById("left-sect").children[0];
+  ul.style.listStyleType = "none"
 
+  for(let liStyle = 0; liStyle<ul.children.length; liStyle ++){
+    // ul.children[liStyle].style.width = "100%";
+    // ul.children[liStyle].style.height = "50px";
+    setSize(ul.children[liStyle], "100%","50px")
+    ul.children[liStyle].style.backgroundColor = "white";
+    ul.children[liStyle].style.border = "1px solid black";
+    ul.children[liStyle].style.transition = "0.6s";
 
+  }
 
+  // ul.parentNode.style.width = "200px";
+  // ul.parentNode.style.height = "450px";
+  ul.parentNode.style.border = "1px solid black";
+  // ul.parentNode.style.display = "flex";
+  // ul.parentNode.style.justifyContent = "center";
+  // ul.parentNode.style.alignItems = "center";
+  
+  // ul.parentNode.nextSibling.style.width = "200px";
+  // ul.parentNode.nextSibling.style.height = "450px";
+  ul.parentNode.nextSibling.style.border = "1px solid blue";
+  // ul.parentNode.nextSibling.style.display = "flex";
+  // ul.parentNode.nextSibling.style.justifyContent = "center";
+  // ul.parentNode.nextSibling.style.alignItems = "center";
+  function flexsetCenter(obj){
+    obj.style.display = "flex";
+    obj.style.justifyContent = "center";
+    obj.style.alignItems = "center";  
+  }
+  let flexsetCenterArr = [body.children[0],body.children[1],main,ul.parentNode,ul.parentNode.nextSibling]
+  for(let flexIndex = 0; flexIndex<flexsetCenterArr.length;flexIndex++){
+    flexsetCenter(flexsetCenterArr[flexIndex])
+  }
+
+  function setSize(obj,wid,hei){
+    obj.style.width = wid;
+    obj.style.height = hei;
+  }
+  let sizeArr = [[body.children[0],"200px","200px"], [body.children[1],"100vw","100vh"],[ul.parentNode,"200px","450px"], [ul.parentNode.nextSibling,"200px","450px"]]
+  for(let sizeIndex = 0;sizeIndex<sizeArr.length;sizeIndex++){
+    setSize(sizeArr[sizeIndex][0],sizeArr[sizeIndex][1],sizeArr[sizeIndex][2])
+  }
+
+  // 버튼활성화
+  let flag = true;
+  function move(obj){
+      obj.style.position = "relative";
+      obj.style.left = "300px";
+  }
+  function moveback(obj){
+      obj.style.position = "relative";
+      obj.style.left = "0px";
+  }
+
+  body.children[0].addEventListener("click",()=>{ 
+    
+    setInterval(()=>{
+    for(let listIndex = 0; listIndex<ul.children.length; listIndex ++){
+      if(flag){
+        move(ul.children[listIndex])
+      }
+      else{
+        moveback(ul.children[listIndex])
+      }
+    }
+    flag = !flag
+  },900)})
+
+  // const styleExample = {
+  //   color: "red",
+  //   backgroundColor: "yellow",
+  //   border : "1px solid black",
+  //   padding: "10px",
+  // }
+
+  // let getKeyString = [];
+  // for (let key in styleExample) {
+  //   getKeyString.push(key);
+  // }
+  // console.log(getKeyString);
+  // for(let i = 0; i < getKeyString.length; i++) {
+  //   console.log(styleExample[getKeyString[i]]);
+  // }
 </script>
 </html>
